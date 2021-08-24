@@ -98,22 +98,19 @@ type AdminContractContract struct {
 	contractapi.Contract
 }
 
-func (s *AdminContractContract) CreateFund(ctx contractapi.TransactionContextInterface, name string, inceptionDate string) error {
-	funds, err := s.QueryFundByName(ctx, name)
-
+func (s *AdminContractContract) CreateFund(ctx contractapi.TransactionContextInterface, fundId string, name string, inceptionDate string) error {
+	obj, err := ctx.GetStub().GetState(fundId)
 	if err != nil {
-		return err
+		return fmt.Errorf(("error retrieving the world state"))
 	}
 
-	if funds == nil {
-		return fmt.Errorf("a fund with the name '%s' already exists", name)
+	if obj != nil {
+		return fmt.Errorf("an object already exists with that id")
 	}
-
-	id := uuid.NewV4().String()
 
 	fund := Fund{
 		DocType:            types.DOCTYPE_FUND,
-		ID:                 id,
+		ID:                 fundId,
 		Name:               name,
 		CurrentPeriod:      0,
 		InceptionDate:      inceptionDate,
@@ -130,7 +127,7 @@ func (s *AdminContractContract) CreateFund(ctx contractapi.TransactionContextInt
 		return err
 	}
 
-	return ctx.GetStub().PutState(id, fundJson)
+	return ctx.GetStub().PutState(fundId, fundJson)
 }
 
 func (s *AdminContractContract) CreateInvestor(ctx contractapi.TransactionContextInterface, name string) error {
