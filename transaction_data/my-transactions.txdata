@@ -1,0 +1,44 @@
+[
+    {
+        "transactionName": "AdminContractExists",
+        "transactionLabel": "A test AdminContractExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "CreateAdminContract",
+        "transactionLabel": "A test CreateAdminContract transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "ReadAdminContract",
+        "transactionLabel": "A test ReadAdminContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "UpdateAdminContract",
+        "transactionLabel": "A test UpdateAdminContract transaction",
+        "arguments": [
+            "001",
+            "some other value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "DeleteAdminContract",
+        "transactionLabel": "A test DeleteAdminContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]
